@@ -1585,6 +1585,18 @@ template: `
               </div>
             </div>
           </v-col>
+          <!-- ============================================================
+               SEND A QUICK MESSAGE — DISABLED (April 2026)
+               ---------------------------------------------------------------
+               This contact form section has been intentionally hidden.
+               To re-enable it in the future:
+                 1. Remove the opening HTML comment tag below  (the one with <v-col cols="12" md="7")
+                 2. Remove the closing HTML comment tag        (the one before the final </v-col>)
+                 3. Make sure a backend / email service (e.g. EmailJS, Formspree, or a
+                    custom API endpoint) is wired up to the sendContact() method in the
+                    Vue data/methods block so form submissions are actually delivered.
+               ============================================================ -->
+          <!-- CONTACT FORM START — kept intact for future use
           <v-col cols="12" md="7" class="reveal-right">
             <v-card class="pa-8 hover-glow" flat style="background:var(--c-surface-3)">
                             <div class="font-orb text-primary mb-5" style="font-size:.75rem;letter-spacing:.12em">// SEND A QUICK MESSAGE</div>
@@ -1604,6 +1616,7 @@ template: `
               <v-alert v-if="cfSent" type="success" variant="tonal" class="mt-4 font-dm" icon="mdi-check" rounded="sm">Message sent! Madhavan will get back to you soon.</v-alert>
             </v-card>
           </v-col>
+          CONTACT FORM END -->
         </v-row>
       </v-container>
     </section>
