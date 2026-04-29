@@ -7,7 +7,7 @@
 <meta charset="UTF-8"/>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
 <meta http-equiv="Pragma" content="no-cache"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <title>Madhavan Karmegam — Portfolio</title>
 <!-- Portfolio v3.2 | Built April 2026 | Open this file, not an older cached version -->
 <meta name="description" content="Business Analyst and UAV Engineer. Published IEEE researcher, DGCA certified pilot, fintech risk analyst."/>
@@ -517,6 +517,9 @@ body {
   --c-footer-bg:rgba(220,230,247,0.95);
 }
 
+.v-theme--lightTheme #skillRadar { background: transparent; }
+.v-theme--lightTheme .skill-radar-wrap,
+.v-theme--lightTheme [style*="skillRadar"] { background: transparent; }
 /* ====== SHIBORI INDIGO LIGHT THEME ====== */
 .v-theme--lightTheme { background:#f0f4ff !important; }
 .v-theme--lightTheme .v-application { background:#f0f4ff !important; }
@@ -549,6 +552,217 @@ body {
     radial-gradient(ellipse 500px 350px at 80% 60%, rgba(74,111,165,.08) 0%, transparent 70%),
     radial-gradient(ellipse 400px 300px at 50% 100%, rgba(26,58,107,.05) 0%, transparent 70%);
 }
+
+
+/* ── Radar chart mobile ── */
+#skillRadar {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+@media (max-width: 599px) {
+  #skillRadar {
+    width: 300px !important;
+    height: 300px !important;
+  }
+}
+
+
+/* ── Drone hologram mobile quality ── */
+#droneCanvas {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  -webkit-font-smoothing: antialiased;
+}
+@media (max-width: 599px) {
+  .holo-wrap { height: clamp(240px, 60vw, 300px) !important; }
+  .holo-wrap .hud-corner { display: none; } /* hide decorative corners on small screens */
+  #droneCanvas { image-rendering: auto; } /* smoother on small screens */
+}
+@media (min-width: 600px) and (max-width: 959px) {
+  .holo-wrap { height: clamp(300px, 40vw, 380px) !important; }
+}
+
+/* ============================================================
+   RESPONSIVE — All devices: phone, tablet, laptop, desktop
+   Breakpoints: xs<600 | sm<960 | md<1280 | lg<1920 | xl+
+   ============================================================ */
+
+/* ── Base touch improvements ── */
+*, *::before, *::after { -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+img, canvas { max-width: 100%; }
+
+/* ── Custom cursor — hide on touch devices ── */
+@media (pointer: coarse) {
+  .mk-cursor, .mk-cursor-ring { display: none !important; }
+  * { cursor: auto !important; }
+}
+
+/* ── Navigation ── */
+@media (max-width: 959px) {
+  .v-app-bar { padding: 0 8px !important; }
+  .nav-time-pill { font-size: .5rem !important; padding: 3px 7px !important; }
+}
+
+/* ── Hero section ── */
+@media (max-width: 599px) {
+  #home { padding: 72px 0 3rem !important; }
+  #home .section-title,
+  #home .font-syne { font-size: clamp(2.2rem, 9vw, 3rem) !important; }
+  #home .hero-name { font-size: clamp(2.8rem, 11vw, 4rem) !important; }
+  #home .hero-stats { flex-direction: column; gap: 16px !important; }
+  #home .hero-stat-divider { display: none; }
+  #home .hero-buttons { flex-direction: column; gap: 8px !important; }
+  #home .hero-buttons .v-btn { width: 100% !important; }
+  #home .profile-frame { width: 200px !important; height: 240px !important; margin: 0 auto 24px !important; }
+  #home .hero-badges { flex-wrap: wrap; gap: 6px !important; }
+  .hero-row { flex-direction: column-reverse !important; }
+}
+
+@media (min-width: 600px) and (max-width: 959px) {
+  #home { padding: 80px 0 3rem !important; }
+  #home .profile-frame { width: 220px !important; height: 270px !important; }
+}
+
+/* ── Who Am I ── */
+@media (max-width: 599px) {
+  #who .persona-pills { flex-wrap: wrap !important; gap: 6px !important; }
+  #who .persona-pills .v-btn { font-size: .65rem !important; padding: 4px 10px !important; }
+  #who .journey-cards { grid-template-columns: 1fr !important; }
+}
+
+@media (min-width: 600px) and (max-width: 959px) {
+  #who .journey-cards { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── Skills radar ── */
+@media (max-width: 599px) {
+  #skills canvas#skillRadar { width: 280px !important; height: 280px !important; }
+  #skills .skills-grid { grid-template-columns: 1fr !important; }
+  #skills .v-col { padding: 6px !important; }
+}
+
+@media (min-width: 600px) and (max-width: 959px) {
+  #skills canvas#skillRadar { width: 320px !important; height: 320px !important; }
+}
+
+/* ── Projects ── */
+@media (max-width: 599px) {
+  #projects canvas#droneCanvas { height: 260px !important; }
+  #projects .project-stats { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+  #projects .project-tags { flex-wrap: wrap !important; }
+  #projects .mini-projects-grid { grid-template-columns: 1fr !important; }
+}
+
+@media (min-width: 600px) and (max-width: 959px) {
+  #projects canvas#droneCanvas { height: 340px !important; }
+  #projects .mini-projects-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── Experience ── */
+@media (max-width: 599px) {
+  #experience .v-timeline { padding-left: 0 !important; }
+  #experience .exp-card { padding: 16px !important; }
+  #experience .exp-tags { flex-wrap: wrap !important; }
+}
+
+/* ── Certifications ── */
+@media (max-width: 599px) {
+  #certifications .cert-grid { grid-template-columns: 1fr !important; }
+  #certifications .v-col { padding: 6px !important; }
+}
+
+/* ── Hobbies ── */
+@media (max-width: 599px) {
+  #hobbies .motives-grid { grid-template-columns: 1fr !important; }
+  #hobbies .hobby-icons { flex-wrap: wrap !important; gap: 12px !important; }
+}
+
+/* ── Resume ── */
+@media (max-width: 599px) {
+  #resume .resume-buttons { flex-direction: column !important; gap: 8px !important; }
+  #resume .resume-buttons .v-btn { width: 100% !important; }
+  #resume .resume-versions { flex-direction: column !important; }
+}
+
+/* ── Contact ── */
+@media (max-width: 599px) {
+  #contact canvas#contactGlobe { width: 160px !important; height: 160px !important; }
+  #contact .email-card { flex-direction: column !important; gap: 12px !important; padding: 18px !important; }
+  #contact .email-card a { font-size: .9rem !important; word-break: break-all; }
+  #contact .contact-links { gap: 12px !important; }
+}
+
+/* ── Footer ── */
+@media (max-width: 599px) {
+  footer, .v-footer { padding: 24px 16px !important; }
+  .footer-links { flex-direction: column !important; gap: 8px !important; text-align: center; }
+  .footer-bottom { font-size: .6rem !important; text-align: center; }
+}
+
+/* ── Typography scaling ── */
+@media (max-width: 599px) {
+  .section-title { font-size: clamp(1.8rem, 8vw, 2.5rem) !important; }
+  .eyebrow { font-size: .6rem !important; letter-spacing: .1em !important; }
+  .font-dm { font-size: .88rem !important; }
+  .v-container { padding-left: 16px !important; padding-right: 16px !important; }
+  .py-16 { padding-top: 48px !important; padding-bottom: 48px !important; }
+}
+
+@media (min-width: 600px) and (max-width: 959px) {
+  .section-title { font-size: clamp(2rem, 5vw, 3rem) !important; }
+  .v-container { padding-left: 24px !important; padding-right: 24px !important; }
+}
+
+/* ── Cards & chips ── */
+@media (max-width: 599px) {
+  .v-chip { font-size: .7rem !important; height: 26px !important; }
+  .hover-glow { border-radius: 4px !important; }
+}
+
+/* ── Scan lines — reduce on mobile for perf ── */
+@media (max-width: 599px) {
+  .scan-line { display: none !important; }
+  #bgc { opacity: .06 !important; }
+}
+
+/* ── Scroll-to-top button ── */
+@media (max-width: 599px) {
+  #scrollTop { bottom: 16px !important; right: 16px !important; width: 36px !important; height: 36px !important; }
+}
+
+/* ── iOS Safari fixes ── */
+@supports (-webkit-touch-callout: none) {
+  .v-app-bar { padding-top: env(safe-area-inset-top) !important; }
+  #home { padding-top: calc(80px + env(safe-area-inset-top)) !important; }
+  footer, .v-footer { padding-bottom: calc(16px + env(safe-area-inset-bottom)) !important; }
+}
+
+/* ── Large screens (1440px+) ── */
+@media (min-width: 1440px) {
+  .v-container { max-width: 1320px !important; }
+  .section-title { font-size: clamp(3rem, 3.5vw, 4.5rem) !important; }
+}
+
+/* ── 4K / ultrawide ── */
+@media (min-width: 2560px) {
+  .v-container { max-width: 1600px !important; }
+  html { font-size: 18px; }
+}
+
+/* ── Print / PDF ── */
+@media print {
+  #bgc, .mk-cursor, .mk-cursor-ring, .scan-line,
+  canvas#droneCanvas, canvas#contactGlobe,
+  #scrollTop, .v-app-bar, .v-navigation-drawer { display: none !important; }
+  body { background: white !important; color: black !important; }
+  .section-title { color: black !important; }
+  .text-primary { color: #1a3a6b !important; }
+  section { page-break-inside: avoid; }
+}
+
 </style>
 <!-- Google Analytics 4 — Replace G-XXXXXXXXXX with your Measurement ID -->
 <!-- Get your ID free at: analytics.google.com -->
@@ -1049,6 +1263,11 @@ template: `
     </section>
 
     <!-- ====== GALLERY ====== -->
+    <!-- 
+      BUILD DIARY — "From Parts to Flight"
+      Section disabled temporarily. Re-enable when drone gallery images are ready.
+      To restore: uncomment the <section> block below and add droneImgs data.
+
     <section id="gallery" style="position:relative;z-index:2;background:var(--c-surface-5)">
       <v-container class="py-16">
         <div class="eyebrow text-primary mb-2 reveal">BUILD DIARY</div>
@@ -1092,13 +1311,16 @@ template: `
         style="position:absolute;top:20px;right:20px;background:none;border:none;color:var(--c-accent);font-size:1.8rem;cursor:pointer;line-height:1">&#10005;</button>
     </div>
 
-    <!-- ====== PROJECTS ====== -->
+
+    -->
+
+        <!-- ====== PROJECTS ====== -->
     <section id="projects" class="section-alt" style="position:relative;z-index:2">
       <v-container class="py-16">
         <div class="eyebrow text-primary mb-2 reveal">WHAT I'VE BUILT</div>
         <div class="section-title text-on-background mb-10 reveal" style="font-size:clamp(2rem,4vw,3rem)">Featured <span class="text-primary">Projects</span></div>
         <v-card class="hover-glow mb-8 reveal" flat style="background:var(--c-surface-3);overflow:hidden">
-          <div id="drone3d" class="holo-wrap" style="width:100%;height:420px;position:relative;overflow:hidden;cursor:grab;user-select:none">
+          <div id="drone3d" class="holo-wrap" style="width:100%;height:clamp(260px,45vw,480px);position:relative;overflow:hidden;cursor:grab;user-select:none">
             <canvas id="droneCanvas" style="width:100%;height:100%;display:block"></canvas>
             <div style="position:absolute;top:14px;left:18px;font-family:Orbitron,monospace;font-size:9px;color:var(--c-accent);opacity:.75;letter-spacing:.14em;line-height:1.7;z-index:3;pointer-events:none">FIXED-WING VTOL UAV<br/><span style="opacity:.45;font-size:7.5px">DRAG TO ROTATE · SCROLL TO ZOOM</span></div>
             <div id="modeLabel" role="button" aria-label="Toggle between hover and flight mode" tabindex="0" style="position:absolute;top:14px;right:18px;font-family:Orbitron,monospace;font-size:9px;color:var(--c-accent);opacity:.75;letter-spacing:.12em;text-align:right;line-height:1.7;z-index:3;cursor:pointer" @click="flightMode=!flightMode">
@@ -2873,12 +3095,14 @@ function cmExport(){
 function initRadar(){
   var canvas=document.getElementById('skillRadar');
   if(!canvas)return;
-  var dpr=window.devicePixelRatio||1;
-  var S=340;
+  var dpr=Math.min(window.devicePixelRatio||1,2);
+  var S=Math.min(canvas.parentElement ? canvas.parentElement.offsetWidth : 340, 340);
+  if(S < 100) S=340; /* fallback if not yet rendered */
   canvas.width=S*dpr; canvas.height=S*dpr;
+  canvas.style.width=S+'px'; canvas.style.height=S+'px';
   var ctx=canvas.getContext('2d');
   ctx.scale(dpr,dpr);
-  var cx=S/2,cy=S/2,maxR=108,t=0,rafId=null;
+  var cx=S/2,cy=S/2,maxR=S*0.318,t=0,rafId=null;
 
   var axes=[
     {label:'BUSINESS\nANALYSIS',  val:0.90, ckey:'p'},
@@ -2897,8 +3121,8 @@ function initRadar(){
   function drawFrame(){
     t+=0.010;
     ctx.clearRect(0,0,S,S);
-    var appEl=document.getElementById('app')||document.body;
-    var dark=!appEl.classList.contains('v-theme--lightTheme');
+    var themeEl=document.querySelector('.v-theme--lightTheme')||document.querySelector('[class*="v-theme--lightTheme"]');
+    var dark=!themeEl;
     var RC=dark?'79,255,206':'26,58,107';
     var RC2=RC;
     var RC3=dark?'79,200,180':'74,111,165';
@@ -3036,9 +3260,10 @@ function initRadar(){
 function initGlobe(){
   var canvas=document.getElementById('contactGlobe');
   if(!canvas)return;
-  var dpr=window.devicePixelRatio||1;
-  var S=240;
+  var dpr=Math.min(window.devicePixelRatio||1,2);
+  var S=Math.min(220, window.innerWidth < 600 ? 180 : 240);
   canvas.width=S*dpr; canvas.height=S*dpr;
+  canvas.style.width=S+'px'; canvas.style.height=S+'px';
   var ctx=canvas.getContext('2d');
   ctx.scale(dpr,dpr);
   var cx=S/2,cy=S/2,R=78,t=0,rafId=null;
@@ -3096,8 +3321,8 @@ function initGlobe(){
 
   function drawFrame(){
     t+=0.006;
-    var appEl2=document.getElementById('app')||document.body;
-    var darkG=!appEl2.classList.contains('v-theme--lightTheme');
+    var themeEl2=document.querySelector('.v-theme--lightTheme')||document.querySelector('[class*="v-theme--lightTheme"]');
+    var darkG=!themeEl2;
     var GC=darkG?'79,255,206':'26,58,107';
     var GC2=darkG?'79,200,255':'74,111,165';
     ctx.clearRect(0,0,S,S);
